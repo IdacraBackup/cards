@@ -1,6 +1,6 @@
 import { assert, describe, expect, it } from 'vitest';
 import { mask } from './mask';
-import { error, getParamNames } from './test_utils';
+import { tests } from './test_utils';
 
 const testCases = [
   [
@@ -21,20 +21,9 @@ const testCases = [
   [
     [2, 5, 3, 0, 1], //aa
     [1, 1, 1, 1, 1], //mm
-    [2, 5, 3, 0, 2], //expect
+    [2, 5, 3, 0, 1], //expect
   ],
 ];
-
-function tests(fn: any, testCases: any[][]) {
-  testCases.forEach((testCase) => {
-    const fnInputs = testCase.slice(0, testCase.length - 1);
-    const expect = testCase[testCase.length - 1];
-    it('works with given examples', () => {
-      const result = fn.apply(this, fnInputs);
-      assert.deepEqual(result, expect, error(fn, result, expect, ...fnInputs));
-    });
-  });
-}
 
 describe('mask', () => {
   tests(mask, testCases);

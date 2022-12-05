@@ -1,4 +1,4 @@
-import { STRIP_COMMENTS, STRIP_KEYWORDS, ARGUMENT_NAMES, ARGUMENT_SPLIT } from './suite.test';
+import { assert, describe, expect, it } from 'vitest';
 
 export const STRIP_COMMENTS = /((\/\/.*$)|(\/\*.*\*\/))/gm;
 export const STRIP_KEYWORDS = /(\s*async\s*|\s*function\s*)+/;
@@ -33,6 +33,17 @@ export function error(fn: any, result: any, expect: any, ...inputs: any[]) {
   let text = 'inputs:';
   inputs.forEach((val, i) => (text += `\n ${inputs[i]} ${params[i]}`));
   return (text += `\n ${expect} expect\n ${result} result`);
+}
+
+export function tests(fn: any, testCases: any[][]) {
+  testCases.forEach((testCase) => {
+    const fnInputs = testCase.slice(0, testCase.length - 1);
+    const expect = testCase[testCase.length - 1];
+    it('works with given examples', () => {
+      const result = fn.apply(this, fnInputs);
+      assert.deepEqual(result, expect, error(fn, result, expect, ...fnInputs));
+    });
+  });
 }
 
 // function prepend(char: string, text: string, expectedSize: number): string {
