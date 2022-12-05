@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../vite.config.ts"],
-  "sourcesContent": ["/// <reference types=\"vitest\" />\n\n// Configure Vitest (https://vitest.dev/config/)\n\nimport { defineConfig } from 'vite'\n\nexport default defineConfig({\n  test: {\n    /* for example, use global to avoid globals imports (describe, test, expect): */\n    // globals: true,\n  },\n})\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAIA,kBAA6B;AAE7B,IAAO,sBAAQ,8BAAa;AAAA,EAC1B,MAAM;AAAA;",
-  "names": []
-}
