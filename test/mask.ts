@@ -1,3 +1,5 @@
+// todo: rename to bitwise AND &
+// todo: consider using EffectTS to be able to override operators
 export function mask(aa: number[], mm: number[]): number[] {
   return aa.map((a, i) => (mm[i] ? a : 0));
 }

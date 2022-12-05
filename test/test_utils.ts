@@ -40,10 +40,18 @@ export function tests(fn: any, testCases: any[][]) {
     const fnInputs = testCase.slice(0, testCase.length - 1);
     const expect = testCase[testCase.length - 1];
     it('works with given examples', () => {
-      const result = fn.apply(this, fnInputs);
+      const result = fn.apply(null, fnInputs);
       assert.deepEqual(result, expect, error(fn, result, expect, ...fnInputs));
     });
   });
+}
+
+function align(text: string, expectedSize: number): string {
+  if (expectedSize - text.length <= 0) {
+    return text;
+  }
+  const arr = new Array(expectedSize - text.length).fill("_");
+  return arr.join('') + text;
 }
 
 // function prepend(char: string, text: string, expectedSize: number): string {
