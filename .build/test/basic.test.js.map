@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../test/basic.test.ts"],
+  "sourcesContent": ["import { assert, expect, test } from 'vitest'\n\n// Edit an assertion and save to see HMR in action\n\ntest('Math.sqrt()', () => {\n  expect(Math.sqrt(4)).toBe(2)\n  expect(Math.sqrt(144)).toBe(12)\n  expect(Math.sqrt(2)).toBe(Math.SQRT2)\n})\n\ntest('JSON', () => {\n  const input = {\n    foo: 'hello',\n    bar: 'world',\n  }\n\n  const output = JSON.stringify(input)\n\n  expect(output).eq('{\"foo\":\"hello\",\"bar\":\"world\"}')\n  assert.deepEqual(JSON.parse(output), input, 'matches original')\n})\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAA,oBAAqC;AAIrC,wBAAK,eAAe,MAAM;AACxB,4BAAO,KAAK,KAAK,IAAI,KAAK;AAC1B,4BAAO,KAAK,KAAK,MAAM,KAAK;AAC5B,4BAAO,KAAK,KAAK,IAAI,KAAK,KAAK;AAAA;AAGjC,wBAAK,QAAQ,MAAM;AACjB,QAAM,QAAQ;AAAA,IACZ,KAAK;AAAA,IACL,KAAK;AAAA;AAGP,QAAM,SAAS,KAAK,UAAU;AAE9B,4BAAO,QAAQ,GAAG;AAClB,uBAAO,UAAU,KAAK,MAAM,SAAS,OAAO;AAAA;",
+  "names": []
+}
