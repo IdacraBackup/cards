@@ -3,7 +3,7 @@ import { asMask, mask, Mask } from './mask';
 import { sub } from './sub';
 import { mul } from './mul';
 import { tests } from './test_utils';
-import { Matrix } from './matrix';
+import { newMatrix, Matrix } from './matrix';
 
 const pipe = (...fns: any[]) => (x: any) => fns.reduce((v, f) => f(v), x);
 const compose = (...fns: any[]) => (x: any) => fns.reduceRight((v, f) => f(v), x);
@@ -15,10 +15,72 @@ const compose = (...fns: any[]) => (x: any) => fns.reduceRight((v, f) => f(v), x
 // filter: creatures with health >= 3
 // effect: sub 4 health
 
+interface Card {
+  id: CardId,
+  family: Family,
+  maxHealth: number;
+}
+
+const enum CardId {
+  MURLOCK = 'MURLOCK',
+  MURLOCK_WARRIOR = 'MURLOCK_WARRIOR',
+  MURLOCK_GIANT = 'MURLOCK_GIANT',
+}
+
+
+
+const enum Family {
+  MURLOCKS = 'MURLOCKS',
+}
+
+const murlock: Card = {
+  id: CardId.MURLOCK,
+  family: Family.MURLOCKS,
+  maxHealth: 1,
+};
+
+const murlockWarrior: Card = {
+  id: CardId.MURLOCK_WARRIOR,
+  family: Family.MURLOCKS,
+  maxHealth: 3,
+};
+
+const murlockGiant: Card = {
+  id: CardId.MURLOCK_GIANT,
+  family: Family.MURLOCKS,
+  maxHealth: 5,
+};
+
+interface Game {
+  id: Matrix,
+  family: Matrix,
+  health: Matrix;
+  maxHealth: Matrix;
+}
+
+function getGame(): Game {
+  return {
+    id: newMatrix(),
+    family: newMatrix(),
+    health: newMatrix(),
+    maxHealth: newMatrix(),
+  };
+}
+
+// TODO IMPLEMENT
+const spawn = (g: Game, c: Card) => g;
+
+let game = getGame();
+game = spawn(game, murlock);
+game = spawn(game, murlockWarrior);
+game = spawn(game, murlockGiant);
+
 // remove 2 health to filter only creatures with > 3 health
 const filter = (bb: Matrix) => asMask(sub(bb, 2));
 // remove 4 health
 const effect = (board: Matrix, mask: Mask) => sub(board, mul(mask, 4));
+
+const myCard = (board: Matrix) => effect(board, filter(board));
 
 // filter produces a mask
 // i can use the mask on the effect or on the board
@@ -49,7 +111,7 @@ export function card2(board: Matrix) {
     // const effectMasked = mask(effect(board), mask);
 
     // return sub(board, effectFiltered(board));
-    return effect(board, filter(board));
+    return myCard(board);
   }
 
 // mathematical style
